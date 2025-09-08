@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
+using System.Runtime.Serialization;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +16,17 @@ namespace ExerciciosTI22M
         //área de variáveis
         private double area;
         private double IMC;
+        public int[] idade;//estrutura de dados finita
+        public int[] numeros;
+        public string[] nomes;
         //método construtor
         public ExerciciosModel() 
         {
             this.area = 0;
             this.IMC = 0;
+            this.idade = new int[10];// de 0 a 9
+            this.numeros = new int[10];
+            this.nomes = new string[10];
         }//fim do construtor
 
         //método get set
@@ -341,6 +351,198 @@ namespace ExerciciosTI22M
                 return Math.Sqrt(Math.Pow(cat1, 2) + Math.Pow(cat2, 2));
             }
         }
+
+        //28. Leia um valor e calcule sua raiz cúbica
+        public double RaizCubica(double numero) 
+        {
+            return Math.Pow(numero, 1.0 / 3.0);
+        }
+
+        //31. Leia um ângulo em graus e converta para radianos.
+        public double GrauRadiano(double graus)
+        {
+            return graus * (Math.PI / 180);
+        }
+
+        //32. Leia um valor e exiba seu valor em porcentagem.
+        public double ValorPorcentagem(double valorPorcentagem)
+        {
+            return (valorPorcentagem / 100) * valorPorcentagem;
+        }
+
+        //33. Calcule a média ponderada entre três notas com pesos diferentes
+        public double MediaPonderada(double n1, double n2, double n3, double p1, double p2, double p3)
+        {
+            double media = 0;
+            if (n1 <= 0 || n2 <= 0 || n3 <= 0)
+            {
+                return -1;
+            }
+            else
+            {
+                media = (n1 * p1) + (n2 * p2) + (n3 * p3) / p1 + p2 + p3;
+            }
+            return media;
+        }//fim do método
+
+        //35. Leia o saldo de uma conta e adicione uma taxa fixa de rendimento
+        public double SaldoConta(double saldo)
+        {
+            double taxa = 1.5;
+            if(saldo <= 0)
+            {
+                return -1;
+            }
+            else
+            {
+                Console.WriteLine(saldo + (saldo * taxa));
+            }
+            return taxa*saldo;
+        }
+
+        //36. Calcule o gasto de energia elétrica com base em potência e tempo de uso.
+        public double GastoEnergia(double potencia, double tempoUso)
+        {
+            double energia = 0;
+            if(potencia <= 0 || tempoUso <= 0)
+            {
+                return -1;
+            }
+            else
+            {
+                energia = ((potencia * tempoUso) / 1000);
+            }
+            return energia;
+        }// fim do método
+
+        //37. Vetor
+        public void PreencherVetor()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                do
+                {
+                    Console.Write(i + 1 + "ª idade: ");
+                    idade[i] = Convert.ToInt32(Console.ReadLine());
+                    if (idade[i] <= 0)
+                    {
+                        Console.WriteLine("Erro, informe uma idade positiva!");
+                    }// fim validação
+                } while (idade[i] <=0);
+            }//fim do for
+        }//fim do método
+
+        //38. método de consultar
+        public void ConsultarVetor()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"{i+1} ª idade: {idade[i]}");
+            }// fim for
+        }//fim consultar
+
+        //39. Buscar Idade
+        public void BuscarIdade(int idade)
+        {
+            Boolean flag = false;
+            for(int i = 0;i < 10; i++)
+            {
+                if (this.idade[i] == idade)
+                {
+                    flag = true;
+                    Console.WriteLine($"A idade {idade} está na posição: {i+1}");
+                }
+            }//fim do for
+            if(flag == false)
+            {
+                Console.WriteLine($"A idade {idade} não está no vetor");
+            }
+        }//fim do método
+
+        //40. Leia 10 números e armazene em um vetor
+        public void PreencherNumeros()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(i + 1 + "º número: ");
+                numeros[i] = Convert.ToInt32(Console.ReadLine());
+            }// fim do for
+        }// fim do método
+
+        //41. Leia 10 números e exiba-os na ordem inversa
+        public void OrdemInversa()
+        {
+            for (int i = 9; i >= 0; i--)
+            {
+                Console.WriteLine($"{10 - i}º número (inverso): {numeros[i]}");
+            }
+        }//fim do método
+
+        //42. Leia 10 números e exiba apenas os pares.
+        public void NumerosPares()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"{i + 1} º número: {numeros[i]}");
+            }// fim do for
+        }// fim do método
+
+        public void BuscarPares()
+        {
+            Console.Write("Os números pares são: ");
+            for (int i = 0; i < 10; i++)
+            {
+                if (numeros[i] % 2 == 0)
+                {
+                    Console.Write(numeros[i] + " ");
+                }
+            }
+        }// fim do método
+
+        //43. Leia 10 números e exiba a média
+        public void NumerosMedia()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"{i + 1} º número: {numeros[i]}");
+            }
+        }
+
+        public void ExibirMedia()
+        {
+            int soma = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                soma += numeros[i]; 
+            }
+
+            int media = (int)soma / 10; 
+
+            Console.WriteLine($"A média dos números é: {media}");
+        }
+
+        //44. Leia 10 nomes e exiba os que começam com "A"
+        public void PreencherNomes()
+        {
+            for(int i = 0;i < 10; i++)
+            {
+                Console.WriteLine($"{i+1} º nome: {nomes[i]}");
+            }
+        }
+
+        public void NomesA()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (nomes[i].Substring(0, 1) == "a" || nomes[i].Substring(0, 1) == "A")
+                {
+                    Console.WriteLine(nomes[i]);
+                }
+            }//fim do for
+        }//fim do método
+
+
 
     }//fim da classe
 }//fim do projeto

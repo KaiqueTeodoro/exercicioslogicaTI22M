@@ -48,7 +48,21 @@ namespace ExerciciosTI22M
                               "\n21. Exercício 21 " +
                               "\n22. Exercício 22 " +
                               "\n23. Exercício 23 " +
-                              "\n24. Exercício 25 ");
+                              "\n25. Exercício 25 " +
+                              "\n28. Exercício 28 " +
+                              "\n31. Exercício 31 " +
+                              "\n32. Exercício 32 " +
+                              "\n33. Exercício 33 " +
+                              "\n35. Exercício 35 " +
+                              "\n36. Exercício 36 " +
+                              "\n37. Exercício 37 - Vetor" +
+                              "\n38. Exercício 38 - Consultar Vetor" +
+                              "\n39. Exercício 39 - Buscar Idade" +
+                              "\n40. Exercício 40 - Preencher Números" +
+                              "\n41. Exercício 41 - Ordem INversa" +
+                              "\n42. Exercício 42 - Pares" +
+                              "\n43. Exercício 43 - Média" +
+                              "\n44. Exercício 44 - Nomes com A");
             ModificarOpcao = Convert.ToInt32(Console.ReadLine());
         }//fim do método mostrarMenu
 
@@ -405,6 +419,143 @@ namespace ExerciciosTI22M
                             Console.WriteLine($"A hipotenusa desse triângulo é: {resultado}");
                         }
                         break;
+
+                    case 28:
+                        Console.WriteLine("Exercício 28");
+                        Console.WriteLine("Informe um valor: ");
+                        numero = Convert.ToInt32(Console.ReadLine());
+
+                        resultado=modelo.RaizCubica(numero);
+                        Console.WriteLine($"A Raiz Cúbica de {numero} é: {resultado}");
+                        break;
+                    
+                    case 31:
+                        Console.WriteLine("Exercício 31");
+                        Console.WriteLine("Informe o valor do ângulo: ");
+                        double graus = Convert.ToDouble(Console.ReadLine());
+
+                        resultado = modelo.GrauRadiano(graus);
+                        Console.WriteLine($"Esse valor convertido para radianos fica: {resultado}");
+                        break;
+                    
+                    case 32:
+                        Console.WriteLine("Exercício 32");
+                        Console.WriteLine("Informe um valor: ");
+                        double valorPorcentagem = Convert.ToDouble(Console.ReadLine());
+
+                        resultado = modelo.ValorPorcentagem(valorPorcentagem);
+                        Console.WriteLine($"O valor em porcentagem é de: {resultado}%");
+                        break;
+
+                    case 33:
+                        Console.WriteLine("Exercício 33");
+                        Console.WriteLine("Informe a primeira nota: ");
+                        double n1 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Informe o peso da primeira nota: ");
+                        double p1 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Informe a segunda nota: ");
+                        double n2 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Informe o peso da segunda nota: ");
+                        double p2 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Informe a terceira nota: ");
+                        double n3 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Informe o peso da terceira nota: ");
+                        double p3 = Convert.ToDouble(Console.ReadLine());
+
+                        resultado = modelo.MediaPonderada(n1, n2, n3, p1, p2, p3);
+                        if(resultado == -1)
+                        {
+                            Console.WriteLine("Informe uma nota positiva!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"A média ponderada é de: {resultado}");
+                        }
+                        break;
+
+                    case 35:
+                        Console.WriteLine("Exercício 35");
+                        Console.WriteLine("Informe o valor do saldo na conta: ");
+                        double saldo = Convert.ToDouble(Console.ReadLine());
+
+                        resultado = modelo.SaldoConta(saldo);
+                        if(resultado == -1)
+                        {
+                            Console.WriteLine("Informe um saldo positivo!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"O saldo adiocionado a taxa fixa de rendimento fica: {resultado}");
+                        }
+                        break;
+
+                    case 36:
+                        Console.WriteLine("Exercício 36");
+                        Console.WriteLine("Informe o valor da potência: ");
+                        double potencia = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Informe o tempo de uso: ");
+                        double tempoUso = Convert.ToDouble(Console.ReadLine());
+
+                        resultado = modelo.GastoEnergia(potencia, tempoUso);
+                        if (resultado == -1)
+                        {
+                            Console.WriteLine("Informe um valor positivo!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"O gasto de energia com esses valores foi de: {resultado}");
+                        }
+                        break;
+
+                    case 37:
+                        Console.WriteLine("Exercício 37");
+                        //mostrar
+                        modelo.PreencherVetor();
+                        break;
+                    
+                    case 38:
+                        Console.WriteLine("Exercício 38");
+                        modelo.ConsultarVetor();
+                        break;
+
+                    case 39:
+                        Console.WriteLine("Exercício 39");
+                        Console.WriteLine("Informe a idade que deseja procurar: ");
+                        int idade = Convert.ToInt32(Console.ReadLine());
+                        modelo.BuscarIdade(idade);
+                        break;
+
+                    case 40:
+                        Console.WriteLine("Exercício 40");
+                        modelo.PreencherNumeros();
+                        break;
+
+                    case 41:
+                        Console.WriteLine("Exercício 41");
+                        modelo.PreencherNumeros();
+                        modelo.OrdemInversa();
+                        break;
+
+                    case 42:
+                        Console.WriteLine("Exercício 42");
+                        modelo.NumerosPares();
+                        modelo.BuscarPares();
+                        break;
+
+                    case 43:
+                        Console.WriteLine("Exercício 43");
+                        modelo.PreencherNumeros();
+                        modelo.ExibirMedia();
+                        break;
+
+                    case 44:
+                        Console.WriteLine("Exercício 44");
+                        modelo.PreencherNomes();
+                        modelo.NomesA();
+                        break;
+
+
+
 
                 }//fim do escolha
             }while(ModificarOpcao !=0);
