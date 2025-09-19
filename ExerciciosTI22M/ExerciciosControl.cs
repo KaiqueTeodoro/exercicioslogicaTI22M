@@ -62,7 +62,26 @@ namespace ExerciciosTI22M
                               "\n41. Exercício 41 - Ordem INversa" +
                               "\n42. Exercício 42 - Pares" +
                               "\n43. Exercício 43 - Média" +
-                              "\n44. Exercício 44 - Nomes com A");
+                              "\n44. Exercício 44 - Nomes com A" +
+                              "\n45. Exercício 45 - Maiores que a Média" +
+                              "\n46. Exercício 46 - Idade Maior" +
+                              "\n47. Exercício 47 - Altura média" +
+                              "\n48. Exercício 48 - Salario Abaixo 1.200" +
+                              "\n49. Exercício 49 - Múltiplos de 5" +
+                              "\n50. Exercício 50 - Vet Par Vet Impar" +
+                              "\n51. Exercício 51 - Maior para Menor" +
+                              "\n52. Exercício 52 - Números Repetidos" +
+                              "\n53. Exercício 53 - Soma Vetores(fim vetor) +" +
+                              "\n54. Exercício 54 - Matriz +" +
+                              "\n55. Exercício 55 - Preencher Zero(matriz) +" +
+                              "\n56. Exercício 56 - Soma Elementos" +
+                              "\n57. Exercício 57 - Média Elementos +" +
+                              "\n58. Exercício 58 - Diagonal Principal" +
+                              "\n59. Exercício 59 - Diagonal Secundária" +
+                              "\n60. Exercício 60 - Maiores que 10" + 
+                              "\n61. Exercício 61 - Soma Mat 3x3" +
+                              "\n62. Exercício 62 - Multipl. 2x2" +
+                              "\n63. Exercício 63 - Troca Linha");
             ModificarOpcao = Convert.ToInt32(Console.ReadLine());
         }//fim do método mostrarMenu
 
@@ -554,9 +573,131 @@ namespace ExerciciosTI22M
                         modelo.NomesA();
                         break;
 
+                    case 45:
+                        Console.WriteLine("Exercício 45");
+                        modelo.PreencherNumeros();
+                        modelo.ExibirMedia();
+                        modelo.MaiorMedia();
+                        break;
 
+                    case 46:
+                        Console.WriteLine("Exercício 46");
+                        modelo.PreencherIdade();
+                        modelo.MaiorIdade();
+                        break;
 
+                    case 47:
+                        Console.WriteLine("Exercício 47");
+                        modelo.AlturaMedia();
+                        modelo.AltMed();
+                        break;
 
+                    case 48:
+                        Console.WriteLine("Exercício 48");
+                        modelo.InserirSalario();
+                        modelo.SalarioAbaixo();
+                        break;
+
+                    case 49:
+                        Console.WriteLine("Exercício 49");
+                        modelo.PreencherNumeros();
+                        modelo.MultiploCinco();
+                        break;
+
+                    case 50:
+                        Console.WriteLine("Exercício 50");
+                        modelo.PreencherNumeros();
+                        modelo.NumPar();
+                        break;
+
+                    case 51:
+                        Console.WriteLine("Exercício 51");
+                        modelo.PreencherNumeros();
+                        modelo.MaiorMenor();
+                        modelo.Consulta();
+                        break;
+
+                    case 52:
+                        Console.WriteLine("Exercício 52");
+                        modelo.PreencherNumeros();
+                        modelo.NumRepetidos();
+                        break;
+
+                    case 53:
+                        Console.WriteLine("Exercício 53");
+                        modelo.SomaV1();
+                        modelo.SomaV2();
+                        modelo.SomaVetores();
+                        break;
+
+                    case 54:
+                        Console.WriteLine("Exercício 54");
+                        modelo.PreencherMatriz();
+                        modelo.MostrarMatriz();
+                        break;
+
+                    case 55:
+                        Console.WriteLine("Exercício 55");
+                        modelo.PreencherZero();
+                        modelo.PreencherMatriz();
+                        break;
+
+                    case 56:
+                        Console.WriteLine("Exercício 56");
+                        modelo.PreencherMatriz();
+                        modelo.SomaElementos();
+                        modelo.MostrarMatriz();
+                        break;
+
+                    case 57:
+                        Console.WriteLine("Exercício 57");
+                        modelo.PreencherMatrizB();
+                        modelo.SomaElementosB();
+                        modelo.MediaElementos();
+                        break;
+
+                    case 58:
+                        Console.WriteLine("Exercício 58");
+                        modelo.PreencherMatriz();
+                        modelo.MostrarMatriz();
+                        modelo.DiagonalPrincipal();
+                        break;
+
+                    case 59:
+                        Console.WriteLine("Exercício 59");
+                        modelo.PreencherMatriz();
+                        modelo.MostrarMatriz();
+                        modelo.DiagonalSecundaria();
+                        break;
+
+                    case 60:
+                        Console.WriteLine("Exercício 60");
+                        modelo.PreencherMatrizB();
+                        modelo.MostrarMatrizB();
+                        modelo.MaioresDez();
+                        break;
+
+                    case 61:
+                        Console.WriteLine("Exercício 61");
+                        modelo.PreencherMatriz();
+                        modelo.MostrarMatriz();
+                        modelo.PreencherMatrizC();
+                        break;
+
+                    case 62:
+                        Console.WriteLine("Exercício 62");
+                        modelo.PreencherMat();
+                        modelo.MostrarMat();
+                        modelo.MultiplicaMatriz();
+                        break;
+
+                    case 63:
+                        Console.WriteLine("Exercício 63");
+                        modelo.PreencherMatD();
+                        modelo.MostrarMatD();
+                        modelo.TrocaLinha();
+                        modelo.MostrarTroca();
+                        break;
                 }//fim do escolha
             }while(ModificarOpcao !=0);
         }//fim do método

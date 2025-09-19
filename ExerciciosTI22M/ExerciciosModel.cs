@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
@@ -19,6 +20,19 @@ namespace ExerciciosTI22M
         public int[] idade;//estrutura de dados finita
         public int[] numeros;
         public string[] nomes;
+        public int media;
+        public double[] altura;
+        public double[] salario;
+        public int[] par;
+        public int[] impar;
+        public int[] soma1;
+        public int[] soma2;
+        public int[,] matriz;//matriz
+        public int[,] matrizB;
+        public int[,] matrizC;
+        public int[,] mat;
+        public int[,] matB;
+        public int[,] matrizD;
         //método construtor
         public ExerciciosModel() 
         {
@@ -27,6 +41,19 @@ namespace ExerciciosTI22M
             this.idade = new int[10];// de 0 a 9
             this.numeros = new int[10];
             this.nomes = new string[10];
+            this.media = 0;
+            this.altura = new double[10];
+            this.salario = new double[10];
+            this.par = new int[10];
+            this.impar = new int[10];
+            this.soma1 = new int[10];
+            this.soma2 = new int[10];
+            this.matriz = new int[3,3];//instanciar matriz
+            this.matrizB = new int[4,4];
+            this.matrizC = new int[3,3];
+            this.mat = new int[2,2];
+            this.matB = new int[2,2];
+            this.matrizD = new int[5,5];
         }//fim do construtor
 
         //método get set
@@ -468,6 +495,9 @@ namespace ExerciciosTI22M
                 numeros[i] = Convert.ToInt32(Console.ReadLine());
             }// fim do for
         }// fim do método
+        
+        //método para mostrar
+    
 
         //41. Leia 10 números e exiba-os na ordem inversa
         public void OrdemInversa()
@@ -517,7 +547,7 @@ namespace ExerciciosTI22M
                 soma += numeros[i]; 
             }
 
-            int media = (int)soma / 10; 
+            media = (int)soma / 10; 
 
             Console.WriteLine($"A média dos números é: {media}");
         }
@@ -525,9 +555,10 @@ namespace ExerciciosTI22M
         //44. Leia 10 nomes e exiba os que começam com "A"
         public void PreencherNomes()
         {
-            for(int i = 0;i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine($"{i+1} º nome: {nomes[i]}");
+                Console.WriteLine($"{i + 1} º nome: ");
+                nomes[i] = Console.ReadLine();
             }
         }
 
@@ -541,6 +572,488 @@ namespace ExerciciosTI22M
                 }
             }//fim do for
         }//fim do método
+
+        //45. Leia 10 números e conte quantos são maiores que a média
+        public void MaiorMedia()
+        {
+            for(int i = 0;i < 10; i++)
+            {
+                if (numeros[i] > media)
+                {
+                    Console.WriteLine($"Os números maiores que a média são: {numeros[i]}");
+                }//fim if
+            }//fim for
+        }//fim método
+
+        //46. Leia 10 idades e exiba a maior
+        public void PreencherIdade()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                do
+                {
+                    Console.WriteLine($"{i + 1} º idade: ");
+                    idade[i] = Convert.ToInt32(Console.ReadLine());
+                    if (idade[i] <= 0)
+                    {
+                        Console.WriteLine("Informe uma idade válida");
+                    }//fim if
+                } while (idade[i] <= 0);
+             }//fim for
+        }//fim método  
+        
+        public void MaiorIdade()
+        {
+            int maior = 0;
+            for (int i = 0;i < 10; i++)
+            {
+                if(idade[i] > maior)
+                {
+                    maior = idade[i];   
+                }//fim if
+            }//fim for
+            Console.WriteLine($"A maior idade é: {maior}");
+        }//fim método
+
+        //47. Leia 10 alturas e exiba a média
+        public void AlturaMedia()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                do
+                {
+                    Console.WriteLine($"{i + 1}º altura: ");
+                    altura[i] = Convert.ToDouble(Console.ReadLine());
+                    if (altura[i] <= 0)
+                    {
+                        Console.WriteLine("Informe uma altura válida");
+                    }//fim if
+                } while (altura[i] <= 0);
+            }//fim for
+        }//fim método
+
+        public void AltMed()
+        {
+            double soma1 = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                soma1 += altura[i];
+            }//fim for
+            Console.WriteLine($"A média das alturas é de: {soma1 /10}");
+        }//fim método
+
+        //48. Leia 10 salários e exiba quantos ganham abaixo de R$1.200,00.
+        public void InserirSalario()
+        {
+            for(int i = 0;i < 10 ; i++)
+            {
+                do
+                {
+                    Console.WriteLine($"{i + 1}º salário: ");
+                    salario[i] = Convert.ToDouble(Console.ReadLine());
+                    if(salario[i] <= 0)
+                    {
+                        Console.WriteLine("Informe um salário válido");
+                    }//fim if
+                }while(salario[i] <= 0);
+            }// fim for
+        }// fim método
+
+        public void SalarioAbaixo()
+        {
+            double abaixo = 1200;
+            int contar = 0;
+            for(int i = 0;i < 10 ; i++)
+            {
+                if (salario[i] < abaixo)
+                {
+                    contar++;
+                }// fim if
+            }// fim for
+            Console.WriteLine($"Os salários abxido de R$ 1,200,00 são: {contar}");
+        }//fim método
+
+        //49. Leia 10 números e exiba quantos são múltiplos de 5.
+        public void MultiploCinco()
+        {
+            for(int i = 0;i < 10 ; i++)
+            {
+                if(numeros[i] % 5 == 0)
+                {
+                    Console.WriteLine($"Os números divisíveis por 5 são: {numeros[i]}");
+                }//fim if
+            }//fim for
+        }//fim método
+
+        //50. Leia 10 valores e os armazene em dois vetores(pares e ímpares).
+        public void NumPar()
+        {
+            int contpar = 0;
+            int contimpar = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                if (numeros[i] % 2 == 0)
+                {
+                    contpar = numeros[i];
+                    contpar++;
+                }
+                else {
+                    contimpar = numeros[i];
+                    contimpar++;
+                }// fim if else
+            }// fim for
+            Console.WriteLine($"Esse número{contpar} é do vetor par");
+            Console.WriteLine($"Esse número{contimpar} é do vetor ímpar");
+        }//fim método
+
+        //51. Leia 10 valores e ordene do maior para o menor.
+        public void MaiorMenor()
+        {
+            int aux = 0;
+            for (int i = 1; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (numeros[i] > numeros[j])
+                    {
+                        aux = numeros[j];
+                        numeros[j] = numeros[i];
+                        numeros[i] = aux;
+                    }//fim if                    
+                }//fim for
+            }//fim do for
+        }//fim do Metodo
+
+        public void Consulta()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"{i + 1}ªNumero {numeros[i]}");
+            }//fim for
+        }//fim consultar
+
+        //52. Leia 10 números e exiba os repetidos.
+        public void NumRepetidos()
+        {
+            for(int i = 1;i < 5; i++)
+            {
+                for( int j = 6;j < 10; j++)
+                {
+                    if (numeros[i] == numeros[j])
+                    {
+                        Console.WriteLine($"Os números iguais são: {numeros[i]}");
+                    }//fim if
+                }// fim for
+            }// fim for   
+        }//fim método
+
+        //53. Some dois vetores de 10 posições(fim vetor)
+        public void SomaV1()
+        {
+            for(int i =0; i < 10; i++)
+            {
+                Console.Write(i + 1 + "º número: ");
+                soma1[i] = Convert.ToInt32(Console.ReadLine());
+            }//fim for
+        }// fim método
+
+        public void SomaV2()
+        {
+            for(int i  = 0; i < 10; i++)
+            {
+                Console.WriteLine(i + 1 + "º número: ");
+                soma2[i] = Convert.ToInt32(Console.ReadLine());
+            }// fim for
+        }// fim método
+
+        public void SomaVetores()
+        {
+            int soma = 0;
+            for(int i = 0; i < 10; i++)
+            {
+                soma += soma1[i] + soma2[i];
+            }//fim for
+            Console.WriteLine($"A soma dos vetores é de: {soma}");
+        }// fim for
+
+        //54. Criar o Preencher Matriz - Método de preenchimento
+        public void PreencherMatriz()
+        {
+            for (int linha = 0; linha <= 2; linha++)
+            {
+                for (int coluna = 0; coluna <= 2; coluna++)
+                {
+                    Console.Write($"matriz {linha}{coluna}: ");
+                    this.matriz[linha, coluna] = Convert.ToInt32(Console.ReadLine());
+                }//fim coluna
+            }//fim linha
+        }// fim método
+
+        public void MostrarMatriz()
+        {
+            for (int linha = 0; linha <= 2; linha++)
+            {
+                for (int coluna = 0; coluna <= 2; coluna++)
+                {
+                    Console.Write($"{matriz[linha, coluna]} ");
+                }//fim coluna
+                Console.WriteLine("");//pular linha
+            }//fim linha
+        }// fim método
+
+        //55. Preencher Zero(matriz)
+        public void PreencherZero()
+        {
+            for (int linha = 0; linha <= 2; linha++)
+            {
+                for (int coluna = 0; coluna <= 2; coluna++)
+                {
+                    if (linha == coluna)
+                    {
+                        matriz[linha, coluna] = 0;
+                    }
+                    else
+                    {
+                        matriz[linha, coluna] = 1;
+                    }// fim if else
+                }//fim coluna
+            }//fim linha
+        }//fim método
+
+        //56. Some todos os elementos de uma matriz 3x3.
+        public void SomaElementos()
+        {
+            int soma = 0;
+            for(int linha = 0;linha <= 2; linha++)
+            {
+                for( int coluna = 0;coluna <= 2; coluna++)
+                {
+                    soma += matriz[linha,coluna];
+                }// fim coluna
+            }//fim linha
+            Console.WriteLine($"A soma dos valores dessa matriz é de: {soma}");
+        }// fim método
+
+        //57. Calcule a média dos elementos de uma matriz 4x4
+        public void PreencherMatrizB()
+        {
+            for (int linha = 0; linha <= 3; linha++)
+            {
+                for (int coluna = 0; coluna <= 3; coluna++)
+                {
+                    Console.Write($"matriz {linha}{coluna}: ");
+                    this.matrizB[linha, coluna] = Convert.ToInt32(Console.ReadLine());
+                }//fim coluna
+            }//fim linha
+        }// fim método
+
+        public void SomaElementosB()
+        {
+            int soma = 0;
+            for (int linha = 0; linha <= 3; linha++)
+            {
+                for (int coluna = 0; coluna <= 3; coluna++)
+                {
+                    soma += matrizB[linha, coluna];
+                }// fim coluna
+            }//fim linha
+            Console.WriteLine($"A soma dos valores dessa matriz é de: {soma}");
+        }// fim método
+
+        public void MediaElementos()
+        {
+            int media = 0;
+            int soma = 0;
+            for(int linha = 0;linha <= 3;linha++)
+            {
+                for(int coluna = 0;coluna <= 3; coluna++)
+                {
+                    soma += matrizB[linha, coluna];
+                }//fim coluna
+            }//fim linha
+            media += soma / 16;
+            Console.WriteLine($"A média da soma dos elementos dessa matriz é de: {media}");
+        }//fim método
+
+        //58. Leia uma matriz 3x3 e exiba apenas a diagonal principal       
+        public void DiagonalPrincipal()
+        {
+            for(int linha = 0;linha <= 2;linha++)
+            {
+                for(int coluna = 0;coluna <= 2;coluna++)
+                {
+                    if(linha == coluna)
+                    {
+                        Console.Write(matriz[linha, coluna] + " ");
+                    }//fim if
+                }//fim coluna
+            }// fim linha
+        }//fim método
+
+        //59. Exiba a diagonal secundária de uma matriz 3x3
+        public void DiagonalSecundaria()
+        {
+            for (int linha = 0; linha < 3; linha++)
+            {
+                for (int coluna = 0; coluna < 3; coluna++)
+                {
+                    if (linha + coluna == 2)
+                    {
+                        Console.Write(matriz[linha, coluna] + " ");
+                    }//fim if
+                }//fim coluna
+            }//fim for
+        }//fim método
+
+        //60. Leia uma matriz 4x4 e conte os elementos maiores que 10.
+        public void MostrarMatrizB()
+        {
+            for (int linha = 0; linha <= 3; linha++)
+            {
+                for (int coluna = 0; coluna <= 3; coluna++)
+                {
+                    Console.Write($"{matrizB[linha, coluna]} ");
+                }//fim coluna
+                Console.WriteLine("");//pular linha
+            }//fim linha
+        }// fim método
+
+        public void MaioresDez()
+        {
+            int contar = 0;
+
+            for (int linha = 0; linha <= 3; linha++)
+            {
+                for (int coluna = 0; coluna <= 3; coluna++)
+                {
+                    if (matrizB[linha, coluna] > 10)
+                    {
+                        contar++;
+                    }//fim if
+                }//fim coluna
+            }//fim linha
+            Console.WriteLine($"Há {contar} maiores que 10");
+        }//fim método
+
+        //61. Leia duas matrizes 3x3 e some os valores.
+        public void PreencherMatrizC()
+        {
+            int soma = 0;
+            for (int linha = 0; linha <= 2; linha++)
+            {
+                for (int coluna = 0; coluna <= 2; coluna++)
+                {
+                    Console.Write($"matriz {linha}{coluna}: ");
+                    this.matrizC[linha, coluna] = Convert.ToInt32(Console.ReadLine());
+
+                    soma += this.matrizC[linha, coluna] + this.matriz[linha, coluna];
+                }//fim coluna
+            }//fim linha
+            Console.WriteLine($"A soma entre essas matrizes fica: {soma}");
+        }// fim método
+
+        public void MostrarMatrizC()
+        {
+            for (int linha = 0; linha <= 2; linha++)
+            {
+                for (int coluna = 0; coluna <= 2; coluna++)
+                {
+                    Console.Write($"{matrizC[linha, coluna]} ");
+                }//fim coluna
+                Console.WriteLine("");//pular linha
+            }//fim linha
+        }// fim método
+
+        //62. Multiplique duas matrizes 2x2.
+        public void PreencherMat()
+        {
+            for (int linha = 0; linha <= 1; linha++)
+            {
+                for (int coluna = 0; coluna <= 1; coluna++)
+                {
+                    Console.Write($"matriz {linha}{coluna}: ");
+                    this.mat[linha, coluna] = Convert.ToInt32(Console.ReadLine());
+                }//fim coluna
+            }//fim linha
+        }// fim método
+
+        public void MostrarMat()
+        {
+            for (int linha = 0; linha <= 1; linha++)
+            {
+                for (int coluna = 0; coluna <= 1; coluna++)
+                {
+                    Console.Write($"{mat[linha, coluna]} ");
+                }//fim coluna
+                Console.WriteLine("");//pular linha
+            }//fim linha
+        }// fim método
+
+        public void MultiplicaMatriz()
+        {
+            int multiplica = 0;
+            for (int linha = 0; linha <= 1; linha++)
+            {
+                for (int coluna = 0; coluna <= 1; coluna++)
+                {
+                    Console.Write($"matriz {linha}{coluna}: ");
+                    this.matB[linha, coluna] = Convert.ToInt32(Console.ReadLine());
+
+                    multiplica += this.mat[linha, coluna] * this.matB[linha, coluna];
+                }//fim coluna
+            }//fim linha
+            Console.WriteLine($"A multiplicação entre essas matrizes fica: {multiplica}");
+        }// fim método
+
+        //63. Leia uma matriz 5x5 e troque a primeira linha com a última.
+        public void PreencherMatD()
+        {
+            for (int linha = 0; linha <= 4; linha++)
+            {
+                for (int coluna = 0; coluna <= 4; coluna++)
+                {
+                    Console.Write($"matriz {linha}{coluna}: ");
+                    this.matrizD[linha, coluna] = Convert.ToInt32(Console.ReadLine());
+                }//fim coluna
+            }//fim linha
+        }// fim método
+
+        public void MostrarMatD()
+        {
+            for (int linha = 0; linha <= 4; linha++)
+            {
+                for (int coluna = 0; coluna <= 4; coluna++)
+                {
+                    Console.Write($"{matrizD[linha, coluna]} ");
+                }//fim coluna
+                Console.WriteLine("");//pular linha
+            }//fim linha
+        }// fim método
+
+        public void TrocaLinha()
+        {
+            for (int coluna = 0; coluna < 5; coluna++)
+            {
+                int temp = this.matrizD[0, coluna]; 
+                this.matrizD[0, coluna] = this.matrizD[4, coluna]; 
+                this.matrizD[4, coluna] = temp; 
+            }//fim for
+        }//fim método
+
+        public void MostrarTroca()
+        {
+            for (int linha = 0; linha <= 4; linha++)
+            {
+                for (int coluna = 0; coluna <= 4; coluna++)
+                {
+                    Console.Write($"{matrizD[linha, coluna]} ");
+                }//fim coluna
+                Console.WriteLine("");//pular linha
+            }//fim linha
+        }// fim método
+
+
+
 
 
 
